@@ -5,14 +5,19 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 type Props = {
   uri?: string;
+  onPress?: () => void;
 };
 
-export const PhotoTile: React.FC<Props> = ({ uri }) => {
+export const PhotoTile = ({ uri, onPress }: Props) => {
   const colors = useColors();
 
   return (
     <View style={styles.mediaBoxWrapper}>
-      <TouchableOpacity style={styles.mediaBox} activeOpacity={0.8}>
+      <TouchableOpacity
+        style={styles.mediaBox}
+        activeOpacity={0.8}
+        onPress={onPress}
+      >
         {uri ? (
           <Image source={{ uri }} style={styles.media} />
         ) : (
@@ -56,4 +61,3 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
 });
-

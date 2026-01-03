@@ -2,17 +2,19 @@ import { PermissionView } from "@/modules/gallery/PermissionView";
 import { PhotoTile } from "@/modules/gallery/image";
 import { usePhotoGallery } from "@/modules/gallery/usePhotoGallery";
 import { useColors } from "@/theme";
+import { useRouter } from "expo-router";
 import React from "react";
 import {
   ActivityIndicator,
   FlatList,
   RefreshControl,
   StyleSheet,
-  View
+  View,
 } from "react-native";
 
 export default function GalleryScreen() {
   const colors = useColors();
+  const router = useRouter();
   const {
     hasPermission,
     requestPermission,
@@ -37,7 +39,25 @@ export default function GalleryScreen() {
         data={assets}
         keyExtractor={(item) => item.id}
         numColumns={3}
-        renderItem={({ item }) => <PhotoTile uri={item.uri} />}
+        renderItem={({ item }) => (
+          <PhotoTile
+            uri={item.uri}
+            onPress={() =>
+              router.push({
+                pathname: "/modal",
+                params: {
+                  uri: item.uri,
+                  filename: item.filename,
+                  width: item.width ? String(item.width) : undefined,
+                  height: item.height ? String(item.height) : undefined,
+                  creationTime: item.creationTime
+                    ? String(item.creationTime)
+                    : undefined,
+                },
+              })
+            }
+          />
+        )}
         contentContainerStyle={styles.contentContainer}
         onEndReached={() => {
           if (hasNextPage && !loadingMore) {
