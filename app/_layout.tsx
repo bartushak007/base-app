@@ -5,7 +5,6 @@ import { useFonts } from "expo-font";
 import { Stack, useRouter } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
-import { Text } from "react-native";
 import "react-native-reanimated";
 
 SplashScreen.preventAutoHideAsync();
@@ -42,18 +41,7 @@ function RootLayoutNav() {
           options={{
             presentation: "modal",
             title: "Image Details",
-            headerRight: () => (
-              <Text
-                onPress={() => router.back()}
-                style={{
-                  fontSize: 16,
-                  fontWeight: "bold",
-                  color: colors.content[500],
-                }}
-              >
-                Close
-              </Text>
-            ),
+            headerShown: false,
           }}
         />
       </Stack>
