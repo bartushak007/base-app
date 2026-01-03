@@ -31,28 +31,12 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
-        name="moments"
-        options={{
-          title: "",
-          tabBarIcon: () => (
-            <TabBarIcon
-              name={currentRoute === "/moments" ? "images" : "images-outline"}
-              color={
-                currentRoute === "/moments"
-                  ? colors.content[500]
-                  : colors.content[300]
-              }
-            />
-          ),
-        }}
-      />
-      <Tabs.Screen
         name="index"
         options={{
           title: "",
           tabBarIcon: () => (
             <TabBarIcon
-              name={currentRoute === "/" ? "calendar" : "calendar-outline"}
+              name={currentRoute === "/" ? "images" : "images-outline"}
               color={
                 currentRoute === "/" ? colors.content[500] : colors.content[300]
               }
@@ -60,6 +44,7 @@ export default function TabLayout() {
           ),
         }}
       />
+
       <Tabs.Screen
         name="settings"
         options={{
